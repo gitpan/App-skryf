@@ -13,7 +13,7 @@ use App::skryf::PostList;
 
 use Mojolicious::Lite;
 
-our $VERSION = '0.001'; # VERSION
+our $VERSION = '0.002'; # VERSION
 
 # Copy initial config if one doesn't exist.
 my $cfgfile = path($ENV{HOME}, ".skryf.conf");

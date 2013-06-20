@@ -3,7 +3,6 @@ MANIFEST
 META.yml
 Makefile.PL
 README
-Rexfile
 bin/skryf
 cpanfile
 dist.ini
@@ -16,6 +15,7 @@ lib/Mojolicious/Command/newpost.pm
 lib/Mojolicious/Command/repost.pm
 lib/Rex/Lang/Perl/Perlbrew/__module__.pm
 lib/Rex/Lang/Perl/Perlbrew/meta.yml
+share/Rexfile
 share/blog.nginx.conf
 share/public/rss.png
 share/public/style.css
