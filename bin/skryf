@@ -1,0 +1,129 @@
+#!/usr/bin/env perl
+use v5.16.3;
+
+use strictures 1;
+use FindBin '$Bin';
+use Path::Tiny;
+use File::ShareDir ':ALL';
+
+use App::skryf::Cfg;
+use App::skryf::Util;
+use App::skryf::Post;
+use App::skryf::PostList;
+
+use Mojolicious::Lite;
+
+our $VERSION = '0.001'; # VERSION
+
+# Copy initial config if one doesn't exist.
+my $cfgfile = path($ENV{HOME}, ".skryf.conf");
+
+path(dist_dir('App-skryf'), "skryf.conf")->copy($cfgfile)
+  unless $cfgfile->exists;
+
+plugin 'Config' => {file => $cfgfile};
+
+my $cfghash = app->config->{skryfcfg} || +{};
+
+# Setup template and static paths
+# Always check config defined paths.
+push @{app->renderer->paths}, path($cfghash->{template_directory});
+push @{app->static->paths}, path($cfghash->{media_directory});
+
+# Fallback on vendor supplied
+push @{app->renderer->paths}, path(dist_dir('App-skryf'), 'templates');
+push @{app->static->paths}, path(dist_dir('App-skryf'), 'public');
+
+my $postdir = $cfghash->{post_directory} || '%homedir%/blog/posts';
+$postdir = App::skryf::Util->sformat($postdir, bindir => $Bin);
+
+my $postlist = App::skryf::PostList->from_dir($postdir);
+
+my $skryfcfg = App::skryf::Cfg->new(%$cfghash);
+helper skryfconf => sub {$skryfcfg};
+
+get '/' => sub {
+    my $self = shift;
+
+    $self->stash(postlist => $postlist->scan);
+
+    my $tmpl = $cfghash->{index_template} || 'index';
+    $self->render($tmpl);
+};
+
+# Category feeds
+get '/feeds/:category/atom.xml' => sub {
+    my $self     = shift;
+    my $category = $self->param('category');
+    my $_posts   = $postlist->scan;
+    $self->stash(postlist => $_posts->by_cat($category));
+    $self->render(template => 'atom', format => 'xml');
+};
+
+# atom.xml
+get '/atom.xml' => sub {
+    my $self = shift;
+
+    my $_posts = $postlist->scan;
+
+    $self->stash(postlist => $_posts->by_date);
+    $self->render(template => 'atom', format => 'xml');
+};
+
+get '/about' => sub {
+    my $self = shift;
+    my $tmpl = $cfghash->{about_template} || 'about';
+    my $post = $postlist->get('about');
+    $self->stash(post => $post);
+    $self->render($tmpl);
+
+};
+
+get '/post/:id' => sub {
+    my $self = shift;
+
+    my $id = $self->param('id');
+    unless ($id =~ /^[A-Za-z0-9_-]+$/) {
+        $self->render(text => 'Invalid post name!', status => 404);
+        return;
+    }
+
+    my ($post, $retry);
+  FETCH_POST: {
+        $post = $postlist->get($id);
+
+        unless ($post) {
+            if ($retry) {
+                $self->render(text => 'No such post!', status => 404);
+                return;
+            }
+            ## FIXME try to load this specific post instead of re-scanning
+            $postlist->scan;
+            ++$retry;
+            redo FETCH_POST;
+        }
+    }
+
+    $self->stash(post => $post);
+
+    my $tmpl = $cfghash->{post_template} || 'post';
+    $self->render($tmpl);
+};
+
+###############################################################################
+# START THE PARTY
+###############################################################################
+app->secret("WHO CARES RITE?");
+app->start;
+
+__END__
+
+=head1 NAME
+
+skryf - blogging gateway
+
+=head1 DESCRIPTION
+
+This is where the magic happens.
+
+=cut
