@@ -8,7 +8,7 @@ use Path::Tiny;
 use DateTime;
 use App::skryf::Util;
 use Data::Dump qw[pp];
-our $VERSION = '0.002'; # VERSION
+our $VERSION = '0.003'; # VERSION
 
 has description => "Create blog post.\n";
 has usage => <<"EOF";

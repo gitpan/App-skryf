@@ -11,7 +11,7 @@ install_share dist => "share";
 
 
 my %WriteMakefileArgs = (
-  "ABSTRACT" => "Blogging blog blog",
+  "ABSTRACT" => "A perl blog engine.",
   "AUTHOR" => "Adam Stokes <hackr\@cypherbook.com>",
   "BUILD_REQUIRES" => {},
   "CONFIGURE_REQUIRES" => {
@@ -44,7 +44,7 @@ my %WriteMakefileArgs = (
     "vars" => 0
   },
   "TEST_REQUIRES" => {},
-  "VERSION" => "0.002",
+  "VERSION" => "0.003",
   "test" => {
     "TESTS" => ""
   }
