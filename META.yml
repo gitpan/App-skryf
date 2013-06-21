@@ -7,7 +7,7 @@ configure_requires:
   ExtUtils::MakeMaker: 6.30
   File::ShareDir::Install: 0.03
 dynamic_config: 0
-generated_by: 'Dist::Zilla version 4.300034, CPAN::Meta::Converter version 2.131490'
+generated_by: 'Dist::Zilla version 4.300035, CPAN::Meta::Converter version 2.131560'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -15,7 +15,6 @@ meta-spec:
 name: App-skryf
 requires:
   Carp: 0
-  Data::Dump: 0
   DateTime: 0
   Exporter: 0
   File::ShareDir: 0
@@ -35,4 +34,4 @@ requires:
 resources:
   homepage: https://github.com/battlemidget/App-skryf
   repository: https://github.com/battlemidget/App-skryf.git
-version: 0.003
+version: 0.004

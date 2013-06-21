@@ -26,7 +26,6 @@ my %WriteMakefileArgs = (
   "NAME" => "App::skryf",
   "PREREQ_PM" => {
     "Carp" => 0,
-    "Data::Dump" => 0,
     "DateTime" => 0,
     "Exporter" => 0,
     "File::ShareDir" => 0,
@@ -44,7 +43,7 @@ my %WriteMakefileArgs = (
     "vars" => 0
   },
   "TEST_REQUIRES" => {},
-  "VERSION" => "0.003",
+  "VERSION" => "0.004",
   "test" => {
     "TESTS" => ""
   }

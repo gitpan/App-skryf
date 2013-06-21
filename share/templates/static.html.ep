@@ -17,9 +17,6 @@
 <h2><%= $post->topic %></h2>
 
 <h3>
-  % my $dt = $fmt->parse_datetime($post->date);
-  <i class="postdate"><%= $dt->strftime("%Y-%m-%d") %></i><br />
-  <i class="categories">Posted under: <%= $post->category %></i>
   <a href="/" class="align-right">&larr; index</a>
 </h3>
 

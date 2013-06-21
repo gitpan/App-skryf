@@ -13,9 +13,11 @@ use App::skryf::PostList;
 
 use Mojolicious::Lite;
 
-our $VERSION = '0.003'; # VERSION
+our $VERSION = '0.004'; # VERSION
 
-# Copy initial config if one doesn't exist.
+###############################################################################
+# Setup configuration
+###############################################################################
 my $cfgfile = path($ENV{HOME}, ".skryf.conf");
 
 path(dist_dir('App-skryf'), "skryf.conf")->copy($cfgfile)
@@ -46,10 +48,19 @@ else {
     push @{app->static->paths}, path(dist_dir('App-skryf'), 'public');
 }
 
+###############################################################################
+# Pull all blog posts
+###############################################################################
 my $postdir = $cfghash->{post_directory} || '%homedir%/blog/posts';
 $postdir = App::skryf::Util->sformat($postdir, bindir => $Bin);
-
 my $postlist = App::skryf::PostList->from_dir($postdir);
+
+###############################################################################
+# Pull static pages
+###############################################################################
+my $staticdir = $cfghash->{static_directory} || '%homedir%/blog/static';
+$staticdir = App::skryf::Util->sformat($staticdir, bindir => $Bin);
+my $staticlist = App::skryf::PostList->from_dir($staticdir);
 
 my $skryfcfg = App::skryf::Cfg->new(%$cfghash);
 helper skryfconf => sub {$skryfcfg};
@@ -82,13 +93,13 @@ get '/atom.xml' => sub {
     $self->render(template => 'atom', format => 'xml');
 };
 
-get '/about' => sub {
+get '/:staticpage' => sub {
     my $self = shift;
-    my $tmpl = $cfghash->{about_template} || 'about';
-    my $post = $postlist->get('about');
+    my $staticpage = $self->param('staticpage');
+    my $tmpl = $cfghash->{static_template} || 'static';
+    my $post = $staticlist->get($staticpage);
     $self->stash(post => $post);
     $self->render($tmpl);
-
 };
 
 get '/post/:id' => sub {

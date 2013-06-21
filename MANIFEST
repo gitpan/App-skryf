@@ -17,11 +17,12 @@ lib/Rex/Lang/Perl/Perlbrew/__module__.pm
 lib/Rex/Lang/Perl/Perlbrew/meta.yml
 share/Rexfile
 share/blog.nginx.conf
+share/public/brickwall.png
 share/public/rss.png
 share/public/style.css
 share/skryf.conf
-share/templates/about.html.ep
 share/templates/atom.xml.ep
 share/templates/index.html.ep
 share/templates/nav.html.ep
 share/templates/post.html.ep
+share/templates/static.html.ep

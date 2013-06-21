@@ -1,6 +1,6 @@
 package App::skryf::Post;
 
-our $VERSION = '0.003'; # VERSION
+our $VERSION = '0.004'; # VERSION
 
 use strictures 1;
 use Carp 'confess';
