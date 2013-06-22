@@ -11,6 +11,7 @@ lib/App/skryf/Cfg.pm
 lib/App/skryf/Post.pm
 lib/App/skryf/PostList.pm
 lib/App/skryf/Util.pm
+lib/Mojolicious/Command/newpage.pm
 lib/Mojolicious/Command/newpost.pm
 lib/Mojolicious/Command/repost.pm
 lib/Rex/Lang/Perl/Perlbrew/__module__.pm

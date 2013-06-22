@@ -13,7 +13,7 @@ use App::skryf::PostList;
 
 use Mojolicious::Lite;
 
-our $VERSION = '0.004'; # VERSION
+our $VERSION = '0.005'; # VERSION
 
 ###############################################################################
 # Setup configuration
@@ -23,6 +23,7 @@ my $cfgfile = path($ENV{HOME}, ".skryf.conf");
 path(dist_dir('App-skryf'), "skryf.conf")->copy($cfgfile)
   unless $cfgfile->exists;
 
+plugin 'gravatar';
 plugin 'Config' => {file => $cfgfile};
 
 my $cfghash = app->config->{skryfcfg} || +{};
