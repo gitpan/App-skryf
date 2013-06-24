@@ -34,8 +34,10 @@ my %WriteMakefileArgs = (
     "Mojo::Base" => 0,
     "Mojolicious::Lite" => 0,
     "Mojolicious::Plugin::Blog" => 0,
+    "Mojolicious::Plugin::GoogleAnalytics" => 0,
     "Mojolicious::Plugin::Gravatar" => 0,
     "Path::Tiny" => 0,
+    "Pithub" => 0,
     "Rex" => 0,
     "Rex::Config" => 0,
     "Text::Markdown" => 0,
@@ -44,7 +46,7 @@ my %WriteMakefileArgs = (
     "vars" => 0
   },
   "TEST_REQUIRES" => {},
-  "VERSION" => "0.005",
+  "VERSION" => "0.005_01",
   "test" => {
     "TESTS" => ""
   }

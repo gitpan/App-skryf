@@ -23,8 +23,10 @@ requires:
   Mojo::Base: 0
   Mojolicious::Lite: 0
   Mojolicious::Plugin::Blog: 0
+  Mojolicious::Plugin::GoogleAnalytics: 0
   Mojolicious::Plugin::Gravatar: 0
   Path::Tiny: 0
+  Pithub: 0
   Rex: 0
   Rex::Config: 0
   Text::Markdown: 0
@@ -35,4 +37,4 @@ requires:
 resources:
   homepage: https://github.com/battlemidget/App-skryf
   repository: https://github.com/battlemidget/App-skryf.git
-version: 0.005
+version: 0.005_01

@@ -1,6 +1,6 @@
 package App::skryf::PostList;
 
-our $VERSION = '0.005'; # VERSION
+our $VERSION = '0.005_01'; # VERSION
 
 use strictures 1;
 use Carp 'confess';

@@ -1,7 +1,7 @@
 use strictures 1;
 package App::skryf;
 
-our $VERSION = '0.005'; # VERSION
+our $VERSION = '0.005_01'; # VERSION
 
 1;
 
