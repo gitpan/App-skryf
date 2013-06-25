@@ -1,7 +1,7 @@
 use strictures 1;
 package App::skryf;
 
-our $VERSION = '0.005_02'; # VERSION
+our $VERSION = '0.005_03'; # VERSION
 
 1;
 
@@ -13,7 +13,7 @@ App-skryf - perl blogger
 
 =head1 DESCRIPTION
 
-Another blog engine utilizing Mojolicious, Markdown, Starman, Rex, and Ubic for
+Another blog engine utilizing Mojolicious, Markdown, Hypnotoad, Rex, and Ubic for
 a more streamlined deployable approach.
 
 =head1 PREREQS
@@ -48,7 +48,6 @@ You'll want to make sure that files exist that reflect the template configuratio
     post_template  => 'post',
     index_template => 'index',
     about_template => 'about',
-    css_template   => 'style',
 
 So B<~/blog/templates/{post.html.ep,index.html.ep,about.html.ep}> and B<~/blog/public/style.css>
 
@@ -59,6 +58,7 @@ So B<~/blog/templates/{post.html.ep,index.html.ep,about.html.ep}> and B<~/blog/p
 
     If perlbrew is installed Rex will autoload that environment to use remotely.
     Otherwise more tinkering is required to handle the perl environment remotely.
+    $ rexify --use=Rex::Lang::Perl::Perlbrew
     $ rex deploy
 
 =head1 RUN (Development)
@@ -71,7 +71,7 @@ I use Ubic to manage the process
 
      use Ubic::Service::SimpleDaemon;
      my $service = Ubic::Service::SimpleDaemon->new(
-      bin => "starman -p 9001 `which skryf` -R",
+      bin => "hypnotoad -f `which skryf`",
       cwd => "/home/username",
       stdout => "/tmp/blog.log",
       stderr => "/tmp/blog.err.log",

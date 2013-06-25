@@ -12,7 +12,7 @@ install_share dist => "share";
 
 my %WriteMakefileArgs = (
   "ABSTRACT" => "A perl blog engine.",
-  "AUTHOR" => "Adam Stokes <hackr\@cypherbook.com>",
+  "AUTHOR" => "Adam Stokes <adamjs\@cpan.org>",
   "BUILD_REQUIRES" => {},
   "CONFIGURE_REQUIRES" => {
     "ExtUtils::MakeMaker" => "6.30",
@@ -27,26 +27,20 @@ my %WriteMakefileArgs = (
   "PREREQ_PM" => {
     "Carp" => 0,
     "DateTime" => 0,
-    "Exporter" => 0,
     "File::ShareDir" => 0,
     "FindBin" => 0,
     "List::Objects::WithUtils" => 0,
     "Mojo::Base" => 0,
     "Mojolicious::Lite" => 0,
-    "Mojolicious::Plugin::Blog" => 0,
     "Mojolicious::Plugin::GoogleAnalytics" => 0,
     "Mojolicious::Plugin::Gravatar" => 0,
     "Path::Tiny" => 0,
     "Pithub" => 0,
-    "Rex" => 0,
-    "Rex::Config" => 0,
     "Text::Markdown" => 0,
-    "base" => 0,
-    "strictures" => 1,
-    "vars" => 0
+    "strictures" => 1
   },
   "TEST_REQUIRES" => {},
-  "VERSION" => "0.005_02",
+  "VERSION" => "0.005_03",
   "test" => {
     "TESTS" => ""
   }

@@ -1,7 +1,7 @@
 ---
 abstract: 'A perl blog engine.'
 author:
-  - 'Adam Stokes <hackr@cypherbook.com>'
+  - 'Adam Stokes <adamjs@cpan.org>'
 build_requires: {}
 configure_requires:
   ExtUtils::MakeMaker: 6.30
@@ -16,25 +16,19 @@ name: App-skryf
 requires:
   Carp: 0
   DateTime: 0
-  Exporter: 0
   File::ShareDir: 0
   FindBin: 0
   List::Objects::WithUtils: 0
   Mojo::Base: 0
   Mojolicious::Lite: 0
-  Mojolicious::Plugin::Blog: 0
   Mojolicious::Plugin::GoogleAnalytics: 0
   Mojolicious::Plugin::Gravatar: 0
   Path::Tiny: 0
   Pithub: 0
-  Rex: 0
-  Rex::Config: 0
   Text::Markdown: 0
-  base: 0
   perl: v5.16.3
   strictures: 1
-  vars: 0
 resources:
   homepage: https://github.com/battlemidget/App-skryf
   repository: https://github.com/battlemidget/App-skryf.git
-version: 0.005_02
+version: 0.005_03

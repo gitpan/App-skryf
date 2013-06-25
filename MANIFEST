@@ -16,8 +16,6 @@ lib/App/skryf/PostList.pm
 lib/App/skryf/Social.pm
 lib/App/skryf/Social/Github.pm
 lib/App/skryf/Util.pm
-lib/Rex/Lang/Perl/Perlbrew/__module__.pm
-lib/Rex/Lang/Perl/Perlbrew/meta.yml
 share/Rexfile
 share/blog.nginx.conf
 share/public/brickwall.png
