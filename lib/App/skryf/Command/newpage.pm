@@ -1,4 +1,4 @@
-package Mojolicious::Command::newpage;
+package App::skryf::Command::newpage;
 
 use strictures 1;
 use v5.16;
@@ -8,7 +8,7 @@ use Path::Tiny;
 use DateTime;
 use App::skryf::Util;
 
-our $VERSION = '0.005_01'; # VERSION
+our $VERSION = '0.005_02'; # VERSION
 
 has description => "Create a new static page.\n";
 has usage => <<"EOF";

@@ -1,4 +1,4 @@
-package Mojolicious::Command::repost;
+package App::skryf::Command::repost;
 
 use strictures 1;
 use v5.16;
@@ -9,7 +9,7 @@ use DateTime;
 
 use App::skryf::Util;
 
-our $VERSION = '0.005_01'; # VERSION
+our $VERSION = '0.005_02'; # VERSION
 
 has description => "Edit pending posts.\n";
 has datetime => sub {

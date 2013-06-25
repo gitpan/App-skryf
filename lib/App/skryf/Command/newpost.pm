@@ -1,4 +1,4 @@
-package Mojolicious::Command::newpost;
+package App::skryf::Command::newpost;
 
 use strictures 1;
 use v5.16;
@@ -8,7 +8,7 @@ use Path::Tiny;
 use DateTime;
 use App::skryf::Util;
 
-our $VERSION = '0.005_01'; # VERSION
+our $VERSION = '0.005_02'; # VERSION
 
 has description => "Create blog post.\n";
 has usage => <<"EOF";

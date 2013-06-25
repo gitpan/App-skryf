@@ -8,14 +8,14 @@ cpanfile
 dist.ini
 lib/App/skryf.pm
 lib/App/skryf/Cfg.pm
+lib/App/skryf/Command/newpage.pm
+lib/App/skryf/Command/newpost.pm
+lib/App/skryf/Command/repost.pm
 lib/App/skryf/Post.pm
 lib/App/skryf/PostList.pm
 lib/App/skryf/Social.pm
 lib/App/skryf/Social/Github.pm
 lib/App/skryf/Util.pm
-lib/Mojolicious/Command/newpage.pm
-lib/Mojolicious/Command/newpost.pm
-lib/Mojolicious/Command/repost.pm
 lib/Rex/Lang/Perl/Perlbrew/__module__.pm
 lib/Rex/Lang/Perl/Perlbrew/meta.yml
 share/Rexfile
@@ -29,3 +29,4 @@ share/templates/index.html.ep
 share/templates/nav.html.ep
 share/templates/post.html.ep
 share/templates/static.html.ep
+share/ubic-blog

@@ -13,7 +13,7 @@ use App::skryf::PostList;
 
 use Mojolicious::Lite;
 
-our $VERSION = '0.005_01'; # VERSION
+our $VERSION = '0.005_02'; # VERSION
 
 ###############################################################################
 # Setup configuration
@@ -49,6 +49,9 @@ if ($media_directory->is_dir) {
 else {
     push @{app->static->paths}, path(dist_dir('App-skryf'), 'public');
 }
+
+# use App::skryf::Command namespace
+push @{app->commands->namespaces}, 'App::skryf::Command';
 
 ###############################################################################
 # Pull all blog posts
