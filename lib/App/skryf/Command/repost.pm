@@ -9,7 +9,7 @@ use DateTime;
 
 use App::skryf::Util;
 
-our $VERSION = '0.005_03'; # VERSION
+our $VERSION = '0.005_04'; # VERSION
 
 has description => "Edit pending posts.\n";
 has datetime => sub {

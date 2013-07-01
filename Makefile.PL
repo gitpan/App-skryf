@@ -27,11 +27,13 @@ my %WriteMakefileArgs = (
   "PREREQ_PM" => {
     "Carp" => 0,
     "DateTime" => 0,
+    "DateTime::Format::ISO8601" => 0,
     "File::ShareDir" => 0,
     "FindBin" => 0,
     "List::Objects::WithUtils" => 0,
     "Mojo::Base" => 0,
     "Mojolicious::Lite" => 0,
+    "Mojolicious::Plugin::Disqus::Tiny" => 0,
     "Mojolicious::Plugin::GoogleAnalytics" => 0,
     "Mojolicious::Plugin::Gravatar" => 0,
     "Path::Tiny" => 0,
@@ -40,7 +42,7 @@ my %WriteMakefileArgs = (
     "strictures" => 1
   },
   "TEST_REQUIRES" => {},
-  "VERSION" => "0.005_03",
+  "VERSION" => "0.005_04",
   "test" => {
     "TESTS" => ""
   }
