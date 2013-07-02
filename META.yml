@@ -33,4 +33,4 @@ requires:
 resources:
   homepage: https://github.com/battlemidget/App-skryf
   repository: https://github.com/battlemidget/App-skryf.git
-version: 0.005_04
+version: 0.006

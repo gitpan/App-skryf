@@ -1,6 +1,6 @@
 package App::skryf::Social::Github;
 
-our $VERSION = '0.005_04'; # VERSION
+our $VERSION = '0.006'; # VERSION
 
 use strictures 1;
 use Pithub;

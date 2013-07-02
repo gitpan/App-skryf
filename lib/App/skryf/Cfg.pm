@@ -1,6 +1,6 @@
 package App::skryf::Cfg;
 
-our $VERSION = '0.005_04'; # VERSION
+our $VERSION = '0.006'; # VERSION
 
 use Carp 'confess';
 
