@@ -1,9 +1,10 @@
+Build.PL
+Changes
 LICENSE
 MANIFEST
+META.json
 META.yml
-Makefile.PL
 README
-bin/skryf
 cpanfile
 dist.ini
 lib/App/skryf.pm
@@ -16,6 +17,7 @@ lib/App/skryf/PostList.pm
 lib/App/skryf/Social.pm
 lib/App/skryf/Social/Github.pm
 lib/App/skryf/Util.pm
+script/skryf
 share/Rexfile
 share/blog.nginx.conf
 share/public/brickwall.png
@@ -28,3 +30,4 @@ share/templates/nav.html.ep
 share/templates/post.html.ep
 share/templates/static.html.ep
 share/ubic-blog
+t/release-pod-syntax.t

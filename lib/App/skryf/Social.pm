@@ -1,6 +1,6 @@
 package App::skryf::Social;
 
-our $VERSION = '0.006'; # VERSION
+# VERSION
 
 use strictures 1;
 

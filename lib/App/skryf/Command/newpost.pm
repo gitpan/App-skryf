@@ -1,6 +1,7 @@
 package App::skryf::Command::newpost;
 
-use strictures 1;
+use strict;
+use warnings;
 use v5.16;
 use FindBin '$Bin';
 use Mojo::Base 'Mojolicious::Command';
@@ -8,7 +9,7 @@ use Path::Tiny;
 use DateTime;
 use App::skryf::Util;
 
-our $VERSION = '0.006'; # VERSION
+# VERSION
 
 has description => "Create blog post.\n";
 has usage => <<"EOF";

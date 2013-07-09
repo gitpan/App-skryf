@@ -1,6 +1,7 @@
 package App::skryf::Command::repost;
 
-use strictures 1;
+use strict;
+use warnings;
 use v5.16;
 use FindBin '$Bin';
 use Mojo::Base 'Mojolicious::Command';
@@ -9,7 +10,7 @@ use DateTime;
 
 use App::skryf::Util;
 
-our $VERSION = '0.006'; # VERSION
+# VERSION
 
 has description => "Edit pending posts.\n";
 has datetime => sub {

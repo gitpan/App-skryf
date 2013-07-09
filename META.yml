@@ -1,20 +1,28 @@
 ---
-abstract: 'A perl blog engine.'
+abstract: 'perl blogger'
 author:
   - 'Adam Stokes <adamjs@cpan.org>'
 build_requires: {}
 configure_requires:
-  ExtUtils::MakeMaker: 6.30
-  File::ShareDir::Install: 0.03
+  Module::Build::Tiny: 0.024
 dynamic_config: 0
-generated_by: 'Dist::Zilla version 4.300035, CPAN::Meta::Converter version 2.120921'
+generated_by: 'Dist::Milla version v1.0.2, Dist::Zilla version 4.300035, CPAN::Meta::Converter version 2.120921'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
   version: 1.4
 name: App-skryf
+no_index:
+  directory:
+    - t
+    - xt
+    - inc
+    - share
+    - eg
+    - examples
 requires:
   Carp: 0
+  Data::Printer: 0
   DateTime: 0
   DateTime::Format::ISO8601: 0
   File::ShareDir: 0
@@ -28,9 +36,8 @@ requires:
   Path::Tiny: 0
   Pithub: 0
   Text::Markdown: 0
-  perl: v5.16.3
-  strictures: 1
 resources:
+  bugtracker: https://github.com/battlemidget/App-skryf/issues
   homepage: https://github.com/battlemidget/App-skryf
   repository: https://github.com/battlemidget/App-skryf.git
-version: 0.006
+version: 0.007_3
