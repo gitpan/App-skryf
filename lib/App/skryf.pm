@@ -2,7 +2,7 @@ use strict;
 use warnings;
 package App::skryf;
 
-our $VERSION = '0.007_4';
+our $VERSION = '0.008';
 
 1;
 
@@ -10,7 +10,7 @@ __END__
 
 =head1 NAME
 
-App-skryf - perl blogger
+App-skryf - i kno rite. another perl blogging engine.
 
 =head1 DESCRIPTION
 
@@ -21,10 +21,9 @@ a more streamlined deployable approach.
 
 I like L<http://perlbrew.pl>, but, whatever you're comfortable with. I won't judge.
 
-=head1 INSTALLATION (SOURCE)
+=head1 INSTALLATION (BLEEDING EDGE)
 
-    $ git clone git://github.com/battlemidget/App-skryf.git
-    $ cpanm --installdeps .
+    $ cpanm git://github.com/battlemidget/App-skryf.git
 
 =head1 SETUP
 
@@ -52,6 +51,14 @@ You'll want to make sure that files exist that reflect the template configuratio
     static_template => 'static',
 
 So B<~/blog/templates/{post.html.ep,index.html.ep,about.html.ep}> and B<~/blog/public/style.css>
+
+=head1 NEW POST
+
+    $ skryf newpost a-new-blog-post
+
+=head1 NEW PAGE
+
+    $ skryf newpage an-about-page
 
 =head1 DEPLOY
 

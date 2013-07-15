@@ -1,5 +1,10 @@
 Revision history for App-skryf
 
+0.008  2013-07-14 23:59:05 EDT
+    - New release, adds following:
+      - Disqus integration
+      - Google Analytics
+
 0.007_4  2013-07-11 00:35:43 EDT
     - Extended documentation
 
