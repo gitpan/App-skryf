@@ -1,5 +1,13 @@
 Revision history for App-skryf
 
+0.009_01  2013-08-05 13:28:36 EDT
+    - Add unittests to cover ui, post model and user model
+    - Add administration section for adding posts via the web
+
+0.009  2013-08-04 21:35:26 EDT
+    - Adding MongoDB support
+    - Morphed into full Mojolicious application
+
 0.008  2013-07-14 23:59:05 EDT
     - New release, adds following:
       - Disqus integration

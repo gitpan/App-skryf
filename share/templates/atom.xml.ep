@@ -1,25 +1,25 @@
-% use DateTime;
-% my $lt = DateTime->now;
+% use Time::Piece::ISO;
+% my $lt = localtime;
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[<%= skryfconf->title %>]]></title>
-  <link href="<%= skryfconf->site %><%= url_for %>" rel="self"/>
-  <link href="<%= skryfconf->site %>/"/>
-  <updated><%= $lt->datetime() %>Z</updated>
-  <id><%= skryfconf->site %>/</id>
+  <title><![CDATA[<%= config->{title} %>]]></title>
+  <link href="<%= config->{site} %><%= url_for %>" rel="self"/>
+  <link href="<%= config->{site} %>/"/>
+  <updated><%= $lt->iso %></updated>
+  <id><%= config->{site} %>/</id>
   <author>
-    <name><![CDATA[<%= skryfconf->author %>]]></name>
-    <% if (skryfconf->contact) { %><email><![CDATA[<%= skryfconf->contact %>]]></email><% } %>
+    <name><![CDATA[<%= config->{author} %>]]></name>
+    <% if (config->{contact}) { %><email><![CDATA[<%= config->{contact} %>]]></email><% } %>
   </author>
-  <generator uri="https://github.com/battlemidget/App-skryf/">skryf - perl blog engine</generator>
-  % for my $post ($postlist->all) {
+  <generator uri="https://github.com/battlemidget/App-skryf/">skryf - a perl blog engine.</generator>
+  % for my $post (@{$postlist}) {
   <entry>
-    <title type="html"><![CDATA[<%= $post->topic %>]]></title>
-    <link href="<%= skryfconf->site %>/post/<%= $post->id %>"/>
-    <updated><%= $post->date %></updated>
-    <id><%= skryfconf->site %>/<%= $post->id %></id>
-    <content type="html"><![CDATA[<%== $post->html %>]]></content>
+    <title type="html"><![CDATA[<%= $post->{topic} %>]]></title>
+    <link href="<%= config->{site} %>/post/<%= $post->{slug} %>"/>
+    <updated><%= $post->{created} %></updated>
+    <id><%== config->{site} %>/<%= $post->{slug} %></id>
+    <content type="html"><![CDATA[<%== $post->{html} %>]]></content>
   </entry>
   % }
 </feed>

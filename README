@@ -2,8 +2,16 @@ NAME
     App-skryf - i kno rite. another perl blogging engine.
 
 DESCRIPTION
-    Another blog engine utilizing Mojolicious, Markdown, Hypnotoad, Rex, and
-    Ubic for a more streamlined deployable approach.
+    Another blog engine which utilizes
+
+    Mojolicious
+    Markdown
+    Hypnotoad
+    Rex
+    Ubic
+    Mongo
+
+    For a more streamlined deployable approach.
 
 PREREQS
     I like <http://perlbrew.pl>, but, whatever you're comfortable with. I
@@ -13,39 +21,23 @@ INSTALLATION (BLEEDING EDGE)
         $ cpanm git://github.com/battlemidget/App-skryf.git
 
 SETUP
+        $ skryf setup
+
     By default skryf will look in dist_dir for templates and media. To
     override that make sure *~/.skryf.conf* points to the locations of your
-    templates, posts, and media. For example, this is a simple directory
-    structure for managing your blog.
+    templates and media. For example, this is a simple directory structure
+    for managing your blog media and templates.
 
-        $ mkdir -p ~/blog/{posts,templates,public}
+        $ mkdir -p ~/blog/{templates,public}
 
-    Edit ~/.skryf.conf to reflect those directories in *media_directory*,
-    *post_directory*, and *template_directory*.
+    Edit ~/.skryf.conf to reflect those directories in *media_directory* and
+    *public_directory*.
 
-        ## Available vars:
-        ##   %bindir%   (path to executable's dir)
-        ##   %homedir%  (current $HOME)
-        post_directory     => '%homedir%/blog/posts',
-        static_directory   => '%homedir%/blog/static',
-        template_directory => '%homedir%/blog/templates',
-        media_directory    => '%homedir%/blog/public',
-
-    You'll want to make sure that files exist that reflect the template
-    configuration options.
-
-        post_template   => 'post',
-        index_template  => 'index',
-        static_template => 'static',
+        template_directory => '~/blog/templates',
+        media_directory    => '~/blog/public',
 
     So ~/blog/templates/{post.html.ep,index.html.ep,about.html.ep} and
     ~/blog/public/style.css
-
-NEW POST
-        $ skryf newpost a-new-blog-post
-
-NEW PAGE
-        $ skryf newpage an-about-page
 
 DEPLOY
         $ export BLOGUSER=username
@@ -77,10 +69,6 @@ AUTHOR
 
 COPYRIGHT
     Copyright 2013- Adam Stokes
-
-DISCLAIMER
-    Jon Portnoy [avenj at cobaltirc.org](http://www.cobaltirc.org) is
-    original author of blagger in which this code is based heavily off of.
 
 LICENSE
     Licensed under the same terms as Perl.

@@ -1,21 +1,46 @@
 package App::skryf::Util;
 
-use strictures 1;
+use strict;
+use warnings;
 
-sub sformat {
-    my ($class, $string) = splice @_, 0, 2;
-    return '' unless defined $string and length $string;
-    my %vars = (homedir => $ENV{HOME}, @_);
-    my $rpl = sub {
-        my ($orig, $match) = @_;
-        return $orig unless defined $vars{$match};
-        ref $vars{$match} eq 'CODE'
-          ? $vars{$match}->($match, $orig, $vars{$match})
-          : $vars{$match};
-    };
-    my $re = qr/(%([^\s%]+)%?)/;
-    $string =~ s/$re/$rpl->($1,$2)/ge;
-    $string;
+use Method::Signatures;
+use Text::Markdown 'markdown';
+use String::Dirify 'dirify';
+use XML::Atom::SimpleFeed;
+use Encode;
+use DateTime::Format::RFC3339;
+
+method convert ($content) {
+    markdown($content, {tab_width => 2});
+}
+
+method slugify ($topic, $auto = 0) {
+    dirify($topic, '-');
+}
+
+method feed ($config, $posts) {
+    my $feed = XML::Atom::SimpleFeed->new(
+        title => $config->{title},
+        link  => $config->{site},
+        link  => {
+            rel  => 'self',
+            href => $config->{site} . '/post/atom.xml',
+        },
+        author => $config->{author},
+        id     => $config->{site},
+    );
+    for my $post (@{$posts}) {
+        my $f = DateTime::Format::RFC3339->new();
+        my $dt = $f->parse_datetime($post->{created});
+        $feed->add_entry(
+            title   => $post->{topic},
+            link    => $config->{site} . '/post/' . $post->{slug},
+            id      => $config->{site} . '/post/' . $post->{slug},
+            content => decode_utf8($post->{html}),
+            updated => $f->format_datetime($dt),
+        );
+    }
+    return $feed;
 }
 
 1;

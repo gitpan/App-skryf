@@ -4,9 +4,9 @@ author:
   - 'Adam Stokes <adamjs@cpan.org>'
 build_requires: {}
 configure_requires:
-  Module::Build::Tiny: 0.024
+  Module::Build::Tiny: 0.025
 dynamic_config: 0
-generated_by: 'Dist::Milla version v1.0.2, Dist::Zilla version 4.300035, CPAN::Meta::Converter version 2.120921'
+generated_by: 'Dist::Milla version v1.0.3, Dist::Zilla version 4.300035, CPAN::Meta::Converter version 2.132140'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -22,22 +22,26 @@ no_index:
     - examples
 requires:
   Carp: 0
-  Data::Printer: 0
   DateTime: 0
-  DateTime::Format::ISO8601: 0
+  DateTime::Format::RFC3339: 0
   File::ShareDir: 0
   FindBin: 0
-  List::Objects::WithUtils: 0
+  Mango: 0
+  Method::Signatures: 0
   Mojo::Base: 0
   Mojolicious::Lite: 0
+  Mojolicious::Plugin::CSRFDefender: 0
   Mojolicious::Plugin::Disqus::Tiny: 0
   Mojolicious::Plugin::GoogleAnalytics: 0
   Mojolicious::Plugin::Gravatar: 0
   Path::Tiny: 0
-  Pithub: 0
+  String::Dirify: 0
   Text::Markdown: 0
+  XML::Atom::SimpleFeed: 0
 resources:
   bugtracker: https://github.com/battlemidget/App-skryf/issues
   homepage: https://github.com/battlemidget/App-skryf
   repository: https://github.com/battlemidget/App-skryf.git
-version: 0.008
+version: 0.009_01
+x_contributors:
+  - 'Adam Stokes <adam.stokes@ubuntu.com>'

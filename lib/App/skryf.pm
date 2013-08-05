@@ -1,8 +1,83 @@
-use strict;
-use warnings;
 package App::skryf;
 
-our $VERSION = '0.008';
+use Mojo::Base 'Mojolicious';
+
+use Carp;
+use File::ShareDir ':ALL';
+use Path::Tiny;
+
+our $VERSION = '0.009_01';
+
+sub startup {
+    my $self = shift;
+
+###############################################################################
+# Setup configuration
+###############################################################################
+    my $cfgfile = undef;
+    if ($self->mode eq "development") {
+        $cfgfile = path(dist_dir('App-skryf'), 'skryf.conf');
+    }
+    else {
+        $cfgfile = path("~/.skryf.conf");
+        path(dist_dir('App-skryf'), "skryf.conf")->copy($cfgfile)
+          unless $cfgfile->exists;
+    }
+    $self->plugin('Config' => {file => $cfgfile});
+    my $cfg = $self->config->{skryf} || +{};
+    $cfg->{version} = $VERSION;
+    $self->secret($cfg->{secret});
+###############################################################################
+# Load global plugins
+###############################################################################
+    for (keys $cfg->{extra_modules}) {
+        $self->plugin("$_") if $cfg->{extra_modules}{$_} > 0;
+    }
+
+###############################################################################
+# Load local plugins
+###############################################################################
+    push @{$self->plugins->namespaces}, 'App::skryf::Plugin';
+    $self->plugin('Blog' => {authentication => $self->session('user')});
+
+###############################################################################
+# Define template, media, static paths
+###############################################################################
+    my $template_directory = undef;
+    my $media_directory    = undef;
+    if ($self->mode eq "development") {
+        $template_directory = path(dist_dir('App-skryf'), 'templates');
+        $media_directory    = path(dist_dir('App-skryf'), 'public');
+    }
+    else {
+        $template_directory = path($cfg->{template_directory});
+        $media_directory    = path($cfg->{media_directory});
+    }
+
+    croak("A template|media|static directory must be defined.")
+      unless $template_directory->is_dir
+      && $media_directory->is_dir;
+
+    push @{$self->renderer->paths}, $template_directory;
+    push @{$self->static->paths},   $media_directory;
+
+# use App::skryf::Command namespace
+    push @{$self->commands->namespaces}, 'App::skryf::Command';
+
+###############################################################################
+# Routing
+###############################################################################
+    $self->helper(config => sub {$cfg});
+    my $r = $self->routes;
+
+    # Authentication
+    $r->get('/login')->to('login#login')->name('login');
+    $r->get('/logout')->to('login#logout')->name('logout');
+    $r->post('/auth')->to('login#auth')->name('auth');
+
+    # Static page view
+    $r->get('/:slug')->to('blog#static_page')->name('static_page');
+}
 
 1;
 
@@ -14,8 +89,25 @@ App-skryf - i kno rite. another perl blogging engine.
 
 =head1 DESCRIPTION
 
-Another blog engine utilizing Mojolicious, Markdown, Hypnotoad, Rex, and Ubic for
-a more streamlined deployable approach.
+Another blog engine which utilizes
+
+=over 8
+
+=item Mojolicious
+
+=item Markdown
+
+=item Hypnotoad
+
+=item Rex
+
+=item Ubic 
+
+=item Mongo
+
+=back
+
+For a more streamlined deployable approach.
 
 =head1 PREREQS
 
@@ -27,38 +119,21 @@ I like L<http://perlbrew.pl>, but, whatever you're comfortable with. I won't jud
 
 =head1 SETUP
 
+    $ skryf setup
+
 By default B<skryf> will look in dist_dir for templates and media. To override that
-make sure I<~/.skryf.conf> points to the locations of your templates, posts, and media.
-For example, this is a simple directory structure for managing your blog.
+make sure I<~/.skryf.conf> points to the locations of your templates and media.
+For example, this is a simple directory structure for managing your blog media and templates.
 
-    $ mkdir -p ~/blog/{posts,templates,public}
+    $ mkdir -p ~/blog/{templates,public}
 
-Edit ~/.skryf.conf to reflect those directories in I<media_directory>, I<post_directory>,
-and I<template_directory>.
+Edit ~/.skryf.conf to reflect those directories in I<media_directory> and 
+I<public_directory>.
 
-    ## Available vars:
-    ##   %bindir%   (path to executable's dir)
-    ##   %homedir%  (current $HOME)
-    post_directory     => '%homedir%/blog/posts',
-    static_directory   => '%homedir%/blog/static',
-    template_directory => '%homedir%/blog/templates',
-    media_directory    => '%homedir%/blog/public',
-
-You'll want to make sure that files exist that reflect the template configuration options.
-
-    post_template   => 'post',
-    index_template  => 'index',
-    static_template => 'static',
+    template_directory => '~/blog/templates',
+    media_directory    => '~/blog/public',
 
 So B<~/blog/templates/{post.html.ep,index.html.ep,about.html.ep}> and B<~/blog/public/style.css>
-
-=head1 NEW POST
-
-    $ skryf newpost a-new-blog-post
-
-=head1 NEW PAGE
-
-    $ skryf newpage an-about-page
 
 =head1 DEPLOY
 
@@ -96,13 +171,14 @@ Adam Stokes E<lt>adamjs@cpan.orgE<gt>
 
 Copyright 2013- Adam Stokes
 
-=head1 DISCLAIMER
-
-Jon Portnoy [avenj at cobaltirc.org](http://www.cobaltirc.org) is original author of blagger
-in which this code is based heavily off of.
-
 =head1 LICENSE
 
 Licensed under the same terms as Perl.
+
+=begin html
+
+<img src="https://travis-ci.org/battlemidget/App-skryf.png?branch=master" />
+
+=end html
 
 =cut

@@ -1,18 +1,20 @@
 requires 'Carp';
-requires 'DateTime';
-requires 'DateTime::Format::ISO8601';
 requires 'File::ShareDir';
 requires 'FindBin';
-requires 'List::Objects::WithUtils';
 requires 'Mojo::Base';
 requires 'Mojolicious::Lite';
 requires 'Mojolicious::Plugin::Disqus::Tiny';
 requires 'Mojolicious::Plugin::GoogleAnalytics';
 requires 'Mojolicious::Plugin::Gravatar';
+requires 'Mojolicious::Plugin::CSRFDefender';
 requires 'Path::Tiny';
-requires 'Pithub';
 requires 'Text::Markdown';
-requires 'Data::Printer';
+requires 'Mango';
+requires 'String::Dirify';
+requires 'Method::Signatures';
+requires 'DateTime';
+requires 'DateTime::Format::RFC3339';
+requires 'XML::Atom::SimpleFeed';
 
 on develop => sub {
     requires 'Test::Pod', '1.41';
