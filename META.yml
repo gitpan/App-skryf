@@ -36,12 +36,13 @@ requires:
   Mojolicious::Plugin::Gravatar: 0
   Path::Tiny: 0
   String::Dirify: 0
-  Text::Markdown: 0
+  String::Util: 0
+  Text::MultiMarkdown: 0
   XML::Atom::SimpleFeed: 0
 resources:
   bugtracker: https://github.com/battlemidget/App-skryf/issues
   homepage: https://github.com/battlemidget/App-skryf
   repository: https://github.com/battlemidget/App-skryf.git
-version: 0.009_01
+version: 0.009_02
 x_contributors:
   - 'Adam Stokes <adam.stokes@ubuntu.com>'

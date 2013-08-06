@@ -29,9 +29,9 @@ share/templates/admin/edit.html.ep
 share/templates/admin/index.html.ep
 share/templates/admin/nav.html.ep
 share/templates/admin/new.html.ep
-share/templates/atom.xml.ep
 share/templates/blog/detail.html.ep
 share/templates/blog/index.html.ep
+share/templates/footer.html.ep
 share/templates/layouts/auth.html.ep
 share/templates/layouts/main.html.ep
 share/templates/layouts/maint.html.ep
