@@ -7,6 +7,10 @@ use FindBin;
 use lib "$FindBin::Bin../../lib";
 
 use Test::More;
+
+plan skip_all => 'set TEST_ONLINE to enable this test'
+  unless $ENV{TEST_ONLINE};
+
 use Test::Mojo;
 
 diag('Testing application functionality');

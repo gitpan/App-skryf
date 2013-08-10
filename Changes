@@ -1,5 +1,9 @@
 Revision history for App-skryf
 
+0.011  2013-08-09 23:56:38 EDT
+    - Add wiki plugin
+    - Add wiki test case
+
 0.010  2013-08-05 23:48:12 EDT
     - Add fallback on dist's template directory
 

@@ -7,6 +7,9 @@ use Test::More;
 use FindBin;
 use lib "$FindBin::Bin../../lib";
 
+plan skip_all => 'set TEST_ONLINE to enable this test'
+  unless $ENV{TEST_ONLINE};
+
 diag("Testing user models");
 use_ok('App::skryf::Model::User');
 my $model;
