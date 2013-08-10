@@ -1,5 +1,9 @@
 Revision history for App-skryf
 
+0.011_1  2013-08-10 18:31:30 EDT
+    - Extend wiki admin
+    - Update style template
+
 0.011  2013-08-09 23:56:38 EDT
     - Add wiki plugin
     - Add wiki test case
