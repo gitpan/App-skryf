@@ -29,7 +29,7 @@ requires:
   Mango: 0
   Method::Signatures: 0
   Mojo::Base: 0
-  Mojolicious::Lite: 0
+  Mojolicious: 0
   Mojolicious::Plugin::CSRFDefender: 0
   Mojolicious::Plugin::Disqus::Tiny: 0
   Mojolicious::Plugin::GoogleAnalytics: 0
@@ -38,10 +38,9 @@ requires:
   String::Dirify: 0
   String::Util: 0
   Text::MultiMarkdown: 0
-  Text::WikiCreole: 0
   XML::Atom::SimpleFeed: 0
 resources:
   bugtracker: https://github.com/battlemidget/App-skryf/issues
   homepage: https://github.com/battlemidget/App-skryf
   repository: https://github.com/battlemidget/App-skryf.git
-version: 0.011_1
+version: 0.011_2
