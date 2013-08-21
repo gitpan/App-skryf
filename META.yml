@@ -1,5 +1,5 @@
 ---
-abstract: 'i kno rite. another perl blogging engine.'
+abstract: 'i kno rite. another perl cms.'
 author:
   - 'Adam Stokes <adamjs@cpan.org>'
 build_requires: {}
@@ -43,4 +43,4 @@ resources:
   bugtracker: https://github.com/battlemidget/App-skryf/issues
   homepage: https://github.com/battlemidget/App-skryf
   repository: https://github.com/battlemidget/App-skryf.git
-version: 0.011_10
+version: 0.011_11
