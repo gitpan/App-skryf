@@ -6,7 +6,7 @@ use Carp;
 use File::ShareDir ':ALL';
 use Path::Tiny;
 
-our $VERSION = '0.011_2';
+our $VERSION = '0.011_10';
 
 sub startup {
     my $self = shift;
@@ -38,8 +38,15 @@ sub startup {
 # Load local plugins
 ###############################################################################
     push @{$self->plugins->namespaces}, 'App::skryf::Plugin';
-    $self->plugin('Blog' => {authentication => $self->session('user')});
-    $self->plugin('Wiki' => {authentication => $self->session('user')});
+    $self->plugin('Admin' => {authentication => $self->session('user')});
+    $self->plugin('Blog'  => {authentication => $self->session('user')});
+    $self->plugin('Wiki'  => {authentication => $self->session('user')});
+    $self->plugin(
+        'Search' => {
+            tapir_token  => $cfg->{social}{tapir},
+            tapir_secret => $cfg->{social}{tapir_secret}
+        }
+    );
 
 ###############################################################################
 # Define template, media, static paths

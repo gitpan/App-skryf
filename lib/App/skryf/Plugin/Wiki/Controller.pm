@@ -3,10 +3,9 @@ package App::skryf::Plugin::Wiki::Controller;
 use Mojo::Base 'Mojolicious::Controller';
 use Method::Signatures;
 use App::skryf::Model::Page;
-use App::skryf::Util;
 
 method wiki_index {
-    $self->redirect_to('wiki_detail', {slug => 'IndexPage' });
+    $self->redirect_to('wiki_detail', {slug => 'IndexPage'});
 }
 
 method wiki_detail {
@@ -16,11 +15,18 @@ method wiki_detail {
     if (! $page) {
         $self->redirect_to('admin_wiki_new');
     } else {
-      $page->{html} = App::skryf::Util->convert($page->{content});
       $self->stash(page => $page);
       $self->render('wiki/detail');
     }
 }
+
+method admin_wiki_index {
+  my $model = App::skryf::Model::Page->new;
+  my $pages = $model->all;
+  $self->stash(pageslist => $pages);
+  $self->render('wiki/admin_index');
+}
+
 
 method admin_wiki_new {
     my $method = $self->req->method;
@@ -62,7 +68,7 @@ method admin_wiki_delete {
     if ($model->remove($slug)) {
         $self->flash(message => $slug . ' removed');
     }
-    $self->redirect_to('wiki_index');
+    $self->redirect_to('admin_wiki_index');
 }
 
 1;

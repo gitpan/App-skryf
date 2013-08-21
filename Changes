@@ -1,5 +1,21 @@
 Revision history for App-skryf
 
+0.011_10  2013-08-20 23:05:20 EDT
+    - Extended admin to support wiki and posts
+    - New admin style
+
+0.011_5  2013-08-12 23:37:40 EDT
+    - Make use of title in search results
+    - Update style
+    - Extend search to use tapir
+
+0.011_4  2013-08-12 20:09:22 EDT
+    - Early release of search plugin
+
+0.011_3  2013-08-11 21:27:52 EDT
+    - Dont pad textarea
+    - support wikilinks in markdown
+
 0.011_2  2013-08-11 17:55:51 EDT
     - Convert Wiki words to proper slugs
 

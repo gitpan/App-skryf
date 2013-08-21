@@ -1,7 +1,6 @@
 % layout 'auth';
 
 %= t 'div', class => 'post-body' => begin
-  %= include 'admin/nav'
   %= t 'h2' => 'Update: '. $post->{topic}
     % if (my $msg = flash 'message') {
     <b><%= $msg %></b>
@@ -10,9 +9,7 @@
   %= hidden_field slug => $post->{slug}
   %= text_field 'topic', type => 'text', class => 'blog-form-control', value => $post->{topic}
   %= t 'br'
-  %= text_area 'content', class => 'blog-form-control blog-form-control-textarea' => begin
-  <%= $post->{content} %>
-  %= end
+  %= text_area 'content' => $post->{content}, class => 'blog-form-control blog-form-control-textarea'
   %= t 'br'
   %= text_field 'tags', type => 'text', class => 'blog-form-control', value => $post->{tags}
   %= t 'br'
