@@ -36,12 +36,15 @@ share/public/style.admin.css
 share/public/style.css
 share/skryf.conf
 share/templates/admin/dashboard.html.ep
+share/templates/admin/dashboard_profile.html.ep
+share/templates/admin/head.html.ep
 share/templates/admin/nav.html.ep
 share/templates/blog/admin_index.html.ep
 share/templates/blog/detail.html.ep
 share/templates/blog/edit.html.ep
 share/templates/blog/index.html.ep
 share/templates/blog/new.html.ep
+share/templates/blog/splash.html.ep
 share/templates/footer.html.ep
 share/templates/layouts/auth.html.ep
 share/templates/layouts/main.html.ep

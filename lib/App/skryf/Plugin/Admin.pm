@@ -13,9 +13,6 @@ my %defaults = (
 
     # Router namespace
     namespace => 'App::skryf::Plugin::Admin::Controller',
-
-    # Set this to the under route for blog administration
-    authCondition => undef,
 );
 
 sub register {
@@ -34,6 +31,12 @@ sub register {
         action     => 'admin_dashboard',
         _admin_conf => \%conf,
     )->name('admin_dashboard');
+
+    $auth_r->route($conf{adminPathPrefix} . "profile")->via(qw[GET POST])->to(
+        namespace  => $conf{namespace},
+        action     => 'admin_dashboard_profile',
+        _admin_conf => \%conf,
+    )->name('admin_dashboard_profile');
     return;
 }
 

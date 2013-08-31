@@ -1,7 +1,7 @@
 % use DateTime::Format::RFC3339;
 % layout 'main';
-%= t 'h1' => 'Archives'
 %= t 'div', class => 'post-list' => begin
+  %= t 'h3' => 'Recent Entries'
   %= tag 'ul' => begin
     % foreach (@{$postlist}) {
       %= tag 'li' => begin
@@ -21,4 +21,29 @@
       %= end
     % }
   %= end
+%= end
+%= t 'div', class => 'post-social' => begin
+	%= t 'h3' => 'Resources'
+	<ul>
+	  <li>
+	    <a href="http://askubuntu.com">Ask Ubuntu</a>
+	  </li>
+	  <li>
+	    <a href="http://ubuntu-discourse.org">Ubuntu Discourse</a>
+	  </li>
+	  <li>
+	    <a href="http://forums.ubuntu.com">Ubuntu Forums</a>
+	  </li>
+	  <li>
+	    <a href="http://planet.ubuntu.com">Planet Ubuntu</a>
+	  </li>
+	  <li>
+	    <a href="http://omgubuntu.co.uk">OMG! Ubuntu</a>
+	  </li>
+	</ul>
+
+	%= t 'h3' => 'Site'
+	<ul>
+	  <li><%= link_to 'Advanced Search' => url_for('search_index') %></li>
+	</ul>
 %= end

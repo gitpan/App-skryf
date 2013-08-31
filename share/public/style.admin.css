@@ -139,7 +139,7 @@ hr {
   width: 100%;
 }
 
-#container .blog-form .blog-form-control {
+.blog-form-control {
   width: 100%;
   border: 3px solid #000;
   padding: 5px;
@@ -147,15 +147,19 @@ hr {
   font-size: 14px;
 }
 
-#container .blog-form .blog-form-control-textarea {
+.blog-form-control-medium {
+  width: 45%;
+}
+
+.blog-form-control-textarea {
   height: 400px;
 }
 
 .btn {
   display: inline-block;
-  margin: 10px;
-  padding: 8px 15px;
-  background: rgb(255, 214, 0);
+  margin: 5px;
+  padding: 4px 12px;
+  background: lightgrey;
   border: 1px solid rgba(0,0,0,0.15);
   border-radius: 1px;
   transition: all 0.3s ease-out;
@@ -169,6 +173,7 @@ hr {
   text-shadow: 0 1px rgba(255,255,255,0.7);
   font-family: 'Ubuntu Mono', sans-serif;
   color: black;
+  cursor: pointer;
 }
 
 .btn:hover  {
@@ -192,7 +197,7 @@ hr {
   display: inline-block;
   margin: 1px;
   padding: 1px 4px;
-  background: rgb(255, 214, 0);
+  background: lightgrey; 
   border: 1px solid rgba(0,0,0,0.15);
   border-radius: 1px;
   transition: all 0.3s ease-out;
@@ -206,6 +211,7 @@ hr {
   text-shadow: 0 1px rgba(255,255,255,0.7);
   font-family: 'Ubuntu Mono', sans-serif;
   font-size: 12px;
+  cursor: pointer;
 }
 
 .blog-form-small .btn-small:hover  {
@@ -238,8 +244,15 @@ a:active {
   text-decoration: none;
 }
 
-h1        { color: dodgerblue; font-family: cursive; font-size: 32pt/42pt; }
-h2        { color: dodgerblue; font-family: cursive; font-size: 28pt/32pt; }
+h1        { color: dodgerblue; font-family: 'Ubuntu', cursive; font-size: 38pt; }
+h2        { color: dodgerblue; font-family: 'Ubuntu', cursive; font-size: 28pt; }
+h3        { color: dodgerblue; font-family: 'Ubuntu', cursive; font-size: 18pt; }
+
+h1, h2, h3 { 
+  border-bottom: 1px solid lightgrey; 
+  margin-bottom: 0;
+  margin-top: 10px;
+}
 
 h3:before, h2:before {
     content: ">";
@@ -249,11 +262,7 @@ h3:before, h2:before {
     pointer-events: none;
     vertical-align: middle;
 }
-
-h3 { 
-    color: rgb(255, 214,0); 
-}
-h4        { color: #aaa; }
+h4        { color: #000; }
 
 .title h4 {
   font-style: italic;
@@ -355,6 +364,7 @@ h4        { color: #aaa; }
 }
 
 /* data table */
+table { width: 100%; }
 th { text-align: left; padding: 5px; background-color: skyblue}
-td { width: 25%; text-align: left; border: 0;}
+td { padding:5px ;text-align: left; border: 0;}
 
