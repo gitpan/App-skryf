@@ -6,7 +6,8 @@ requires 'Mojolicious';
 requires 'Mojolicious::Plugin::Disqus::Tiny';
 requires 'Mojolicious::Plugin::GoogleAnalytics';
 requires 'Mojolicious::Plugin::Gravatar';
-requires 'Mojolicious::Plugin::CSRFDefender';
+requires 'Mojolicious::Plugin::CSRFProtect';
+requires 'Mojolicious::Plugin::HTMLLint';
 requires 'Path::Tiny';
 requires 'Text::MultiMarkdown';
 requires 'Mango';
@@ -19,4 +20,5 @@ requires 'String::Util';
 
 on develop => sub {
     requires 'Test::Pod', '1.41';
+    requires 'Test::Mojo';
 };
