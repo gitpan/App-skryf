@@ -39,13 +39,10 @@ hr {
 #container {
   color: black;
   width: 960px;
-  margin-left: 200px;
-  margin-top: -50px; }
+  margin-left: 210px;
+  margin-top: -35px; }
 
 #container p {
-  padding: 15px; }
-
-#container .post-body {
   padding: 15px; }
 
 #container .post-body p {
@@ -99,9 +96,6 @@ hr {
 
 #container .post-title h1 {
   margin: 0; }
-
-#container .wiki-body {
-  padding: 15px; }
 
 #container .wiki-body ul {
   list-style-type: square; }

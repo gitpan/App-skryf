@@ -4,7 +4,7 @@
       "Adam Stokes <adamjs@cpan.org>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Dist::Milla version v1.0.4, Dist::Zilla version 4.300037, CPAN::Meta::Converter version 2.120921",
+   "generated_by" : "Dist::Milla version v1.0.4, Dist::Zilla version 4.300038, CPAN::Meta::Converter version 2.132510",
    "license" : [
       "perl_5"
    ],
@@ -42,7 +42,7 @@
             "DateTime::Format::RFC3339" : "0",
             "File::ShareDir" : "0",
             "FindBin" : "0",
-            "Mango" : "0",
+            "Mango" : "0.12",
             "Method::Signatures" : "0",
             "Mojo::Base" : "0",
             "Mojolicious" : "0",
@@ -62,16 +62,16 @@
    "release_status" : "stable",
    "resources" : {
       "bugtracker" : {
-         "web" : "https://github.com/battlemidget/App-skryf/issues"
+         "web" : "https://github.com/skryf/App-skryf/issues"
       },
-      "homepage" : "https://github.com/battlemidget/App-skryf",
+      "homepage" : "https://github.com/skryf/App-skryf",
       "repository" : {
          "type" : "git",
-         "url" : "https://github.com/battlemidget/App-skryf.git",
-         "web" : "https://github.com/battlemidget/App-skryf"
+         "url" : "https://github.com/skryf/App-skryf.git",
+         "web" : "https://github.com/skryf/App-skryf"
       }
    },
-   "version" : "0.012",
+   "version" : "0.013",
    "x_contributors" : [
       "Adam Stokes <adam.stokes@ubuntu.com>"
    ]

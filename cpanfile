@@ -10,7 +10,7 @@ requires 'Mojolicious::Plugin::CSRFProtect';
 requires 'Mojolicious::Plugin::HTMLLint';
 requires 'Path::Tiny';
 requires 'Text::MultiMarkdown';
-requires 'Mango';
+requires 'Mango', '0.12';
 requires 'String::Dirify';
 requires 'Method::Signatures';
 requires 'DateTime';
