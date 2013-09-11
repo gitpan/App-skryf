@@ -1,5 +1,10 @@
 Revision history for App-skryf
 
+0.014_01  2013-09-10 21:52:55 EDT
+    - Add encrypted passwords
+    - Do not echo prompted password during setup
+    - Add db app helper
+
 0.013  2013-09-09 18:57:07 EDT
     - Add widget helpers
     - Clean up documentation

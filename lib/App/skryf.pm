@@ -5,8 +5,9 @@ use Mojo::Base 'Mojolicious';
 use Carp;
 use File::ShareDir ':ALL';
 use Path::Tiny;
+use Class::Load ':all';
 
-our $VERSION = '0.013';
+our $VERSION = '0.014_01';
 
 has admin_menu => sub {
   my $self = shift;
@@ -26,7 +27,7 @@ sub startup {
 ###############################################################################
     my $cfgfile = undef;
     if ($self->mode eq "development") {
-        $cfgfile = path(dist_dir('App-skryf'), 'skryf.conf');
+        $cfgfile = path(dist_dir('App-skryf'), 'app/config/development.conf');
     }
     else {
         $cfgfile = path("~/.skryf.conf");
@@ -35,14 +36,27 @@ sub startup {
     }
     $self->plugin('Config' => {file => $cfgfile});
     my $cfg = $self->config->{skryf} || +{};
-    $cfg->{version} = $VERSION;
+    $cfg->{version} = eval $VERSION;
     $self->secret($cfg->{secret});
+
+###############################################################################
+# Database Helper
+###############################################################################
+    $self->helper(
+        db => sub {
+            my $self       = shift;
+            my $collection = shift;
+            my $store      = "App::skryf::Model::$collection";
+            load_class($store);
+            $store->new(dbname => $cfg->{dbname});
+        }
+    );
 ###############################################################################
 # Load global plugins
 ###############################################################################
     push @{$self->plugins->namespaces}, 'App::skryf::Plugin';
     for (keys $cfg->{extra_modules}) {
-        $self->plugin("$_") if $cfg->{extra_modules}{$_} > 0;
+        $self->plugin($_) if $cfg->{extra_modules}{$_} > 0;
     }
 
 ###############################################################################
@@ -62,8 +76,8 @@ sub startup {
     my $media_directory    = undef;
     if ($self->mode eq "development" || !defined($cfg->{template_directory}))
     {
-        $template_directory = path(dist_dir('App-skryf'), 'templates');
-        $media_directory    = path(dist_dir('App-skryf'), 'public');
+        $template_directory = path(dist_dir('App-skryf'), 'app/templates');
+        $media_directory    = path(dist_dir('App-skryf'), 'app/public');
     }
     else {
         $template_directory = path($cfg->{template_directory});
