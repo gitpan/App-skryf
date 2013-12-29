@@ -7,14 +7,9 @@ use File::ShareDir ':ALL';
 use Path::Tiny;
 use Class::Load ':all';
 
-our $VERSION = '0.014_01';
+our $VERSION = '0.016_01'; # VERSION
 
-has admin_menu => sub {
-  my $self = shift;
-  return [];
-};
-
-has frontend_menu => sub {
+has loaded_plugins => sub {
   my $self = shift;
   return [];
 };
@@ -31,13 +26,12 @@ sub startup {
     }
     else {
         $cfgfile = path("~/.skryf.conf");
-        path(dist_dir('App-skryf'), "skryf.conf")->copy($cfgfile)
+        path(dist_dir('App-skryf'), 'app/config/production.conf')->copy($cfgfile)
           unless $cfgfile->exists;
     }
     $self->plugin('Config' => {file => $cfgfile});
-    my $cfg = $self->config->{skryf} || +{};
-    $cfg->{version} = eval $VERSION;
-    $self->secret($cfg->{secret});
+    $self->config->{version} = eval $VERSION;
+    $self->secrets($self->config->{secret});
 
 ###############################################################################
 # Database Helper
@@ -48,48 +42,24 @@ sub startup {
             my $collection = shift;
             my $store      = "App::skryf::Model::$collection";
             load_class($store);
-            $store->new(dbname => $cfg->{dbname});
+            $store->new(dbname => $self->config->{dbname});
         }
     );
 ###############################################################################
 # Load global plugins
 ###############################################################################
     push @{$self->plugins->namespaces}, 'App::skryf::Plugin';
-    for (keys $cfg->{extra_modules}) {
-        $self->plugin($_) if $cfg->{extra_modules}{$_} > 0;
+    for (keys %{$self->config->{extra_modules}}) {
+        $self->plugin($_) if $self->config->{extra_modules}{$_} > 0;
     }
 
 ###############################################################################
-# Load Core plugins
+# Make sure a theme is available and load it.
 ###############################################################################
-    $self->plugin(
-        'Search' => {
-            tapir_token  => $cfg->{social}{tapir},
-            tapir_secret => $cfg->{social}{tapir_secret}
-        }
-    );
-
-###############################################################################
-# Define template, media, static paths
-###############################################################################
-    my $template_directory = undef;
-    my $media_directory    = undef;
-    if ($self->mode eq "development" || !defined($cfg->{template_directory}))
-    {
-        $template_directory = path(dist_dir('App-skryf'), 'app/templates');
-        $media_directory    = path(dist_dir('App-skryf'), 'app/public');
-    }
-    else {
-        $template_directory = path($cfg->{template_directory});
-        $media_directory    = path($cfg->{media_directory});
-    }
-
-    croak("A template|media|static directory must be defined.")
-      unless $template_directory->is_dir
-      && $media_directory->is_dir;
-
-    push @{$self->renderer->paths}, $template_directory;
-    push @{$self->static->paths},   $media_directory;
+    croak("No theme was defined/found.")
+      unless defined($self->config->{theme});
+    push @{$self->plugins->namespaces}, 'App::skryf::Theme';
+    $self->plugin($self->config->{theme});
 
 # use App::skryf::Command namespace
     push @{$self->commands->namespaces}, 'App::skryf::Command';
@@ -97,20 +67,9 @@ sub startup {
 ###############################################################################
 # Routing
 ###############################################################################
-    $self->helper(config => sub {$cfg});
     my $r = $self->routes;
-
-    # Authentication
-    # TODO: make pluggable
-    $r->get('/login')->to('login#login')->name('login');
-    $r->get('/logout')->to('login#logout')->name('logout');
-    $r->post('/auth')->to('login#auth')->name('auth');
-
-    # TODO: make splashpage overridable
-    $r->get('/')->to(
-        namespace => 'App::skryf::Plugin::Blog::Controller',
-        action    => 'blog_splash'
-    )->name('splashpage');
+    # Default route
+    $r->get('/')->to('welcome#index')->name('welcome');
 }
 1;
 
@@ -118,48 +77,43 @@ __END__
 
 =head1 NAME
 
-App-skryf - i kno rite. another perl cms.
+App-skryf - Perl CMS/CMF.
 
 =head1 DESCRIPTION
 
-Another CMS platform which utilizes Mojolicious, Markdown, hypnotoad, Rex, Ubic,
-and Mongo.
+CMS/CMF platform for Perl.
 
 =head1 PREREQS
 
-I like L<http://perlbrew.pl>, but, whatever you're comfortable with. I won't judge.
+L<https://github.com/tokuhirom/plenv/>.
 
 =head1 INSTALLATION (BLEEDING EDGE)
 
-    $ cpanm git://github.com/battlemidget/App-skryf.git
+    $ cpanm https://github.com/skryf/App-skryf.git
 
 =head1 SETUP
 
     $ skryf setup
 
-By default B<skryf> will look in dist_dir for templates and media. To override that
-make sure I<~/.skryf.conf> points to the locations of your templates and media.
-For example: 
+=head2 Themes
 
-    $ mkdir -p ~/blog/{templates,public}
+Themes are installed via cpan, e.g:
 
-Edit ~/.skryf.conf to reflect those directories in I<template_directory> and 
-I<media_directory>.
+    $ cpanm https://github.com/skryf/App-skryf-Theme-Booshka.git
 
-    template_directory => '~/blog/templates',
-    media_directory    => '~/blog/public',
+Then specify the theme in your config:
 
-So B<~/blog/templates/blog/detail.html.ep> and B<~/blog/public/style.css>
+    theme => 'Booshka'
 
-=head1 DEPLOY
+=head2 Plugins
 
-    $ export BLOGUSER=username
-    $ export BLOGSERVER=example.com
+Plugins are installed via cpan, e.g:
 
-    If perlbrew is installed Rex will autoload that environment to use remotely.
-    Otherwise more tinkering is required to handle the perl environment remotely.
-    $ rexify --use=Rex::Lang::Perl::Perlbrew
-    $ rex deploy
+    $ cpanm https://github.com/skryf/App-skryf-Plugin-Blog.git
+
+Then specify plugin in your config:
+
+    extra_modules => { 'Blog' => 1 }
 
 =head1 RUN (Development)
 
@@ -185,16 +139,10 @@ Adam Stokes E<lt>adamjs@cpan.orgE<gt>
 
 =head1 COPYRIGHT
 
-Copyright 2013- Adam Stokes
+Copyright 2013-2014 Adam Stokes
 
 =head1 LICENSE
 
 Licensed under the same terms as Perl.
-
-=begin html
-
-<img src="https://travis-ci.org/battlemidget/App-skryf.png?branch=master" />
-
-=end html
 
 =cut

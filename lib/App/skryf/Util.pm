@@ -3,6 +3,8 @@ package App::skryf::Util;
 use strict;
 use warnings;
 
+our $VERSION = '0.016_01'; # VERSION
+
 use Method::Signatures;
 use Text::MultiMarkdown 'markdown';
 use String::Dirify 'dirify';
