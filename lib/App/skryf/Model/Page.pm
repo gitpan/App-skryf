@@ -1,5 +1,7 @@
 package App::skryf::Model::Page;
 
+our $VERSION = '0.016_02'; # VERSION
+
 use Mojo::Base 'App::skryf::Model::Base';
 
 use App::skryf::Util;

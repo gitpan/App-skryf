@@ -1,5 +1,7 @@
 package App::skryf::Model::Base;
 
+our $VERSION = '0.016_02'; # VERSION
+
 use Mojo::Base -base;
 use Mango;
 use Method::Signatures;

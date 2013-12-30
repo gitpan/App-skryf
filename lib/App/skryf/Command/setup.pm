@@ -1,13 +1,13 @@
 package App::skryf::Command::setup;
 
-our $VERSION = '0.016_01'; # VERSION
+our $VERSION = '0.016_02'; # VERSION
 
 use Mojo::Base 'Mojolicious::Command';
 use FindBin '$Bin';
 use Carp;
 use IO::Prompt;
 
-has description => "Setup your CMS.\n";
+has description => "Setup Skryf.\n";
 has usage       => <<"EOF";
 
 Usage: $0 setup
@@ -27,6 +27,6 @@ sub run {
           "Please remove if you wish to re-auth";
     }
     $model->create($username, $self->app->bcrypt($password));
-    say "CMS Setup completed.";
+    say "Skryf Setup completed.";
 }
 1;

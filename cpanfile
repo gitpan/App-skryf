@@ -1,3 +1,4 @@
+requires "App::skryf::Model::Post" => "0";
 requires "App::skryf::Theme::Booshka" => "0";
 requires "Carp" => "0";
 requires "Class::Load" => "0";

@@ -1,5 +1,7 @@
 package App::skryf::Login;
 
+our $VERSION = '0.016_02'; # VERSION
+
 use Mojo::Base 'Mojolicious::Controller';
 
 sub login {

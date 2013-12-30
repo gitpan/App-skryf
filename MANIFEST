@@ -12,7 +12,6 @@ lib/App/skryf/Command/setup.pm
 lib/App/skryf/Login.pm
 lib/App/skryf/Model/Base.pm
 lib/App/skryf/Model/Page.pm
-lib/App/skryf/Model/Post.pm
 lib/App/skryf/Model/User.pm
 lib/App/skryf/Util.pm
 lib/App/skryf/Welcome.pm
