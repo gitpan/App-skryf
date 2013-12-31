@@ -18,6 +18,8 @@ meta-spec:
   version: 1.4
 name: App-skryf
 requires:
+  App::skryf::Plugin::Admin: 0
+  App::skryf::Plugin::Blog: 0
   App::skryf::Theme::Booshka: 0
   Carp: 0
   Class::Load: 0
@@ -44,4 +46,4 @@ requires:
 resources:
   homepage: https://github.com/skryf/App-skryf
   repository: https://github.com/skryf/App-skryf.git
-version: 0.016_03
+version: 0.0016_04

@@ -23,6 +23,8 @@ my %WriteMakefileArgs = (
   "LICENSE" => "perl",
   "NAME" => "App::skryf",
   "PREREQ_PM" => {
+    "App::skryf::Plugin::Admin" => 0,
+    "App::skryf::Plugin::Blog" => 0,
     "App::skryf::Theme::Booshka" => 0,
     "Carp" => 0,
     "Class::Load" => 0,
@@ -53,7 +55,7 @@ my %WriteMakefileArgs = (
     "Test::More" => 0,
     "lib" => 0
   },
-  "VERSION" => "0.016_03",
+  "VERSION" => "0.0016_04",
   "test" => {
     "TESTS" => "t/model/*.t t/web/*.t"
   }
@@ -61,6 +63,8 @@ my %WriteMakefileArgs = (
 
 
 my %FallbackPrereqs = (
+  "App::skryf::Plugin::Admin" => 0,
+  "App::skryf::Plugin::Blog" => 0,
   "App::skryf::Theme::Booshka" => 0,
   "Carp" => 0,
   "Class::Load" => 0,

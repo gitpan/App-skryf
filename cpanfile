@@ -1,3 +1,5 @@
+requires "App::skryf::Plugin::Admin" => "0";
+requires "App::skryf::Plugin::Blog" => "0";
 requires "App::skryf::Theme::Booshka" => "0";
 requires "Carp" => "0";
 requires "Class::Load" => "0";

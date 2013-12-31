@@ -1,6 +1,6 @@
 package App::skryf::Command::setup;
 
-our $VERSION = '0.016_03'; # VERSION
+our $VERSION = '0.0016_04'; # VERSION
 
 use Mojo::Base 'Mojolicious::Command';
 use Mojo::Util qw(hmac_sha1_sum);

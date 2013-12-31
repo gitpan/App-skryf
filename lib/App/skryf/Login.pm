@@ -1,6 +1,6 @@
 package App::skryf::Login;
 
-our $VERSION = '0.016_03'; # VERSION
+our $VERSION = '0.0016_04'; # VERSION
 
 use Mojo::Base 'Mojolicious::Controller';
 use Mojo::Util qw(hmac_sha1_sum);
@@ -17,7 +17,7 @@ sub login {
 sub logout {
     my $self = shift;
     $self->session(expires => 1);
-    $self->redirect_to('welcome');
+    $self->redirect_to($self->app->config->{landing_page});
 }
 
 sub auth {

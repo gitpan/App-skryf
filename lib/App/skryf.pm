@@ -8,7 +8,12 @@ use Path::Tiny;
 use Class::Load ':all';
 use DDP;
 
-our $VERSION = '0.016_03'; # VERSION
+our $VERSION = '0.0016_04'; # VERSION
+
+has admin_menu => sub {
+    my $self = shift;
+    return [];
+};
 
 sub startup {
     my $self = shift;
@@ -74,7 +79,12 @@ sub startup {
     $r->get('/logout')->to('login#logout')->name('logout');
     $r->post('/auth')->to('login#auth')->name('auth');
 
-    $r->get('/')->to('welcome#index')->name('welcome');
+    $r->get('/')->to(
+        cb => sub {
+            my $self = shift;
+            $self->redirect_to($self->config->{landing_page});
+        }
+    )->name('welcome');
 }
 1;
 

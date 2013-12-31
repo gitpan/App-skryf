@@ -1,6 +1,6 @@
 package App::skryf::Model::Base;
 
-our $VERSION = '0.016_03'; # VERSION
+our $VERSION = '0.0016_04'; # VERSION
 
 use Mojo::Base -base;
 use Mango;

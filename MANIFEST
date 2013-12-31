@@ -21,6 +21,7 @@ share/app/Rexfile
 share/app/config/development.conf
 share/app/config/production.conf
 share/app/config/staging.conf
+share/doc/DEPLOY.md
 share/etc/nginx/sites-available/www.skryf.conf
 share/etc/ubic/service/skryf
 t/model/00-base.t
