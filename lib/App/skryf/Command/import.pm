@@ -1,6 +1,6 @@
 package App::skryf::Command::import;
 
-our $VERSION = '0.016_02'; # VERSION
+our $VERSION = '0.016_03'; # VERSION
 
 use Mojo::Base 'Mojolicious::Command';
 use FindBin '$Bin';

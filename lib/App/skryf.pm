@@ -6,8 +6,9 @@ use Carp;
 use File::ShareDir ':ALL';
 use Path::Tiny;
 use Class::Load ':all';
+use DDP;
 
-our $VERSION = '0.016_02'; # VERSION
+our $VERSION = '0.016_03'; # VERSION
 
 sub startup {
     my $self = shift;
@@ -21,7 +22,8 @@ sub startup {
     }
     else {
         $cfgfile = path("~/.skryf.conf");
-        path(dist_dir('App-skryf'), 'app/config/production.conf')->copy($cfgfile)
+        path(dist_dir('App-skryf'), 'app/config/production.conf')
+          ->copy($cfgfile)
           unless $cfgfile->exists;
     }
     $self->plugin('Config' => {file => $cfgfile});
@@ -40,11 +42,13 @@ sub startup {
             $store->new(dbname => $self->config->{dbname});
         }
     );
+
 ###############################################################################
 # Load global plugins
 ###############################################################################
     push @{$self->plugins->namespaces}, 'App::skryf::Plugin';
     for (keys %{$self->config->{extra_modules}}) {
+        $self->log->debug('Loading plugin: ' . $_);
         $self->plugin($_) if $self->config->{extra_modules}{$_} > 0;
     }
 
@@ -54,6 +58,7 @@ sub startup {
     croak("No theme was defined/found.")
       unless defined($self->config->{theme});
     push @{$self->plugins->namespaces}, 'App::skryf::Theme';
+    $self->log->debug('Loading theme: ' . $self->config->{theme});
     $self->plugin($self->config->{theme});
 
 # use App::skryf::Command namespace
@@ -63,7 +68,12 @@ sub startup {
 # Routing
 ###############################################################################
     my $r = $self->routes;
+
     # Default route
+    $r->get('/login')->to('login#login')->name('login');
+    $r->get('/logout')->to('login#logout')->name('logout');
+    $r->post('/auth')->to('login#auth')->name('auth');
+
     $r->get('/')->to('welcome#index')->name('welcome');
 }
 1;

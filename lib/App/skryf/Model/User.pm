@@ -1,6 +1,6 @@
 package App::skryf::Model::User;
 
-our $VERSION = '0.016_02'; # VERSION
+our $VERSION = '0.016_03'; # VERSION
 
 use Mojo::Base 'App::skryf::Model::Base';
 use Method::Signatures;
@@ -8,6 +8,10 @@ use Mango::BSON ':bson';
 
 method users {
     $self->mgo->db->collection('users');
+}
+
+method all {
+    $self->users->find()->all;
 }
 
 method create ($username, $password, $attrs = {}) {
@@ -52,6 +56,10 @@ User model
 =head2 B<users>
 
 Grabs user collection from Mongo
+
+=head2 B<all>
+
+Returns all users
 
 =head2 B<check>
 

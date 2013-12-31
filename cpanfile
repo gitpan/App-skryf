@@ -1,7 +1,7 @@
-requires "App::skryf::Model::Post" => "0";
 requires "App::skryf::Theme::Booshka" => "0";
 requires "Carp" => "0";
 requires "Class::Load" => "0";
+requires "DDP" => "0";
 requires "DateTime" => "0";
 requires "DateTime::Format::RFC3339" => "0";
 requires "Encode" => "0";
@@ -12,6 +12,7 @@ requires "Mango" => "0";
 requires "Mango::BSON" => "0";
 requires "Method::Signatures" => "0";
 requires "Mojo::Base" => "0";
+requires "Mojo::Util" => "0";
 requires "Path::Tiny" => "0";
 requires "String::Dirify" => "0";
 requires "String::Util" => "0";

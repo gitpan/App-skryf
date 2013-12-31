@@ -18,10 +18,10 @@ meta-spec:
   version: 1.4
 name: App-skryf
 requires:
-  App::skryf::Model::Post: 0
   App::skryf::Theme::Booshka: 0
   Carp: 0
   Class::Load: 0
+  DDP: 0
   DateTime: 0
   DateTime::Format::RFC3339: 0
   Encode: 0
@@ -32,6 +32,7 @@ requires:
   Mango::BSON: 0
   Method::Signatures: 0
   Mojo::Base: 0
+  Mojo::Util: 0
   Path::Tiny: 0
   String::Dirify: 0
   String::Util: 0
@@ -43,4 +44,4 @@ requires:
 resources:
   homepage: https://github.com/skryf/App-skryf
   repository: https://github.com/skryf/App-skryf.git
-version: 0.016_02
+version: 0.016_03

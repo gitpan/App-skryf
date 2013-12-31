@@ -1,16 +1,21 @@
 package App::skryf::Model::Base;
 
-our $VERSION = '0.016_02'; # VERSION
+our $VERSION = '0.016_03'; # VERSION
 
 use Mojo::Base -base;
 use Mango;
 use Method::Signatures;
+use DDP;
 
 has mpath => 'mongodb://localhost:27017/';
 has dbname => $ENV{TEST_ONLINE} || 'skryf';
 
 method mgo {
     Mango->new($self->mpath.$self->dbname);
+}
+
+method current_db {
+    return $self->dbname;
 }
 
 1;
